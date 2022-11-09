@@ -14,8 +14,8 @@ En ole lukenu vielä sitä mitä pitää tehdä niin tää on nyt vähän tyhjä
 2. lissää
 3. more
 
-'''
-tässä vois oolla
+```
+tässä vois olla
 vaikka koodio
 tai ascii arttia
-'''
+```
