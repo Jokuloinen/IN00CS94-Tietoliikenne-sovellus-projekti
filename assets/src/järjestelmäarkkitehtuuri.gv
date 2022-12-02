@@ -1,0 +1,87 @@
+digraph järjestelmäarkkitehtuuri {
+	// graph atributes
+	fontname = "Source Code Pro"
+	node [
+		fontname = "Source Code Pro"
+		shape = "record"
+	]
+	edge [
+		fontname = "Source Code Pro"
+	]
+  	graph [
+		rankdir = "LR";
+		splines=polyline;
+	]
+
+	//the shapes and text
+	subgraph cluster_0 {
+		label="Koodit jotka löytyy tästä reposta.";
+		
+		Arduino [ label="
+			Arduino
+			|
+			Kerää XYZ tietoa accelerometristä ja lähettää ne radioaalloilla.\l
+		"];
+
+		SQLAsiakas [label="
+			SQL asiakasohjelma
+			|
+			Pytää tietokannalta mittaustiedot.\l
+		"]
+
+		HTTPAsiakas [label="
+			HTTP asiakasohjelma
+			|
+			Pyytää http apilta/palvelimelta mitatusdatat.\l
+		"]
+
+		TCPAsiakas [label="
+			TCP asiakasohjelma
+			|
+			Pyytää tcp palvelimelta mittaustiedot.\l
+		"]
+
+		KMEANS [label="
+			K-means
+			|
+			K-means algorimi ja mallidataa. Tästä on 2 versiota 4means ja 6means\l
+		"]
+	}
+
+	subgraph cluster_1{
+		label="Opettajain laitteita ja koodia. Ei osa tätä repoa.";
+
+		RaspberryPi [label="
+			Raspberry Pi
+			|
+			Lähettää radioaaltojen yli saapuneen tiedon tietokannalle.\l
+		"];
+
+		Tietokanta [label="
+			Tietokanta
+			|
+			Säilyttää kaikki mittaustiedot.\l
+		"];
+
+		TCPpalvelin [label="
+			TCP palvelin
+			|
+			Tarjoaa mittaustietojen noudon TCP:n yli.\l
+		"]
+
+		HTTPpalvelin [label="
+			HTTP palvelin
+			|
+			Tarjoaa mittaustietojen noudon HTTP:n yli.\l
+		"]
+	}
+
+	// connections
+	Arduino->RaspberryPi [label="Radioaalto ASK modulaatio"];
+	RaspberryPi->Tietokanta [label="SQL verkko protokolla"];
+	TCPpalvelin->Tietokanta [label="SQL verkko protokolla"; dir=both];
+	HTTPpalvelin->Tietokanta [label="SQL verkko protokolla"; dir=both]
+	SQLAsiakas->Tietokanta [label="SQL verkko protokolla"; dir=both];
+	HTTPAsiakas->TCPpalvelin [label="HTTP"];
+	TCPAsiakas->HTTPpalvelin [label="TCP"];
+}

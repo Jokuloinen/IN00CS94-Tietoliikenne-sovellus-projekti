@@ -11,7 +11,7 @@ uint16_t yVal = 0;
 uint16_t zVal = 0;
 
 uint8_t message[8];//(16+16+16+8)/8
-RH_ASK driver;
+RH_ASK driver;//pins 11 and 12 for rx and tx
 RHReliableDatagram rhd(driver, 53);
 
 void setup() {
@@ -76,7 +76,7 @@ void loop() {
     //send message
     rhd.sendtoWait(message, 8, 254);
 
-    delay(200);
+    delay(100);
   }
   delay(200);
 }
