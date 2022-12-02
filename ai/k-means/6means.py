@@ -33,7 +33,7 @@ print(dataKv)
 
 
 #loop like 10 times: more = more accurate
-for i in range(10):
+for i in range(100):
 	print("iteration:", i)
 	print("point0", dataKv[0])
 	print("point1", dataKv[1])
@@ -106,3 +106,5 @@ plt.plot(g3[0], g3[1], g3[2], 'o')
 plt.plot(g4[0], g4[1], g4[2], 'o')
 plt.plot(g5[0], g5[1], g5[2], 'o')
 plt.show()
+
+print(pgs)
