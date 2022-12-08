@@ -1,0 +1,16 @@
+  max min avg
+x 404 267 336
+y 399 268 335
+z 400 274 337
+
+X	y	z	dir		largest to smallest	addition
+336	315	274	up		X Y Z			925
+333	268	355	forward		Z X Y			956
+337	399	325	backward	Y X Z			1061
+268	336	346	left		Z Y X			950
+404	332	337	right		X Z Y			1073
+334	359	400	down		Z Y X			1093
+
+
+kaksi zyx:iä, ne voi erotella eri haaroihin vertaamalla niiden elementtejen plus laskua
+nämä ryhmät voidaan erotalla taas vertailemalla elementtejen arvoja keskenään
