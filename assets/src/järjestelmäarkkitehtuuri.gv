@@ -18,33 +18,51 @@ digraph järjestelmäarkkitehtuuri {
 		label="Koodit jotka löytyy tästä reposta.";
 		
 		Arduino [ label="
-			Arduino
+			arduino/tiedonkeräys/
 			|
 			Kerää XYZ tietoa accelerometristä ja lähettää ne radioaalloilla.\l
 		"];
 
+		ArduinoML [ label="
+			arduino/ml_predictive/
+			|
+			Kertoo accelerometrin ja muutaman algoritmin avualla missä asennossa accelerometri on.\l
+		"];
+
 		SQLAsiakas [label="
-			SQL asiakasohjelma
+			database_access/sql
 			|
 			Pytää tietokannalta mittaustiedot.\l
 		"]
 
 		HTTPAsiakas [label="
-			HTTP asiakasohjelma
+			database_access/http
 			|
 			Pyytää http apilta/palvelimelta mitatusdatat.\l
 		"]
 
 		TCPAsiakas [label="
-			TCP asiakasohjelma
+			database_access/tcp
 			|
 			Pyytää tcp palvelimelta mittaustiedot.\l
 		"]
 
 		KMEANS [label="
-			K-means
+			ml/k-means
 			|
 			K-means algorimi ja mallidataa. Tästä on 2 versiota 4means ja 6means\l
+		"]
+
+		NEURAL [label="
+			ml/nn_creator
+			|
+			Ohjelma joko kouluttaa neuroverkon ja tulostaa sen parametrit.\l
+		"]
+
+		POINT [label="
+			ml/nn_point
+			|
+			Ohjelma joka kykenee juoksemaan jo koulutetun neuroverkon ilman tensorflow:ta.
 		"]
 	}
 

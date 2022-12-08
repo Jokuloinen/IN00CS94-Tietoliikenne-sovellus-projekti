@@ -1,15 +1,15 @@
 # IN00CS94-Tietoliikenns-sovellus-projekti
 
-Toisen vuodet tieto ja viestintä tekniikan laitepuolten opiskelijoiden lukuvuoden ensimmäinen ryhmäprojekti. Tää on mun repo.
+Toisen vuodet tieto ja viestintä tekniikan laitepuolten opiskelijoiden lukuvuoden ensimmäinen sovellusprojekti.
 
 ## projekti kaavio kaavio
 
 Kaaviossa näkyy mitä koodia reposta löytyy ja miten koodi mahdollisesti puhuu muun koodin kanssa.
 ![kaavio tai jotain](assets/dig.png "diagrammi")
 
-## arduiino koodi
+## arduino
 
-Arduiinokoodi löytyy kansiosta `sketch_nov02a/`. Siinä pinit 11 ja 12 toimivat tiedon vastaanotto ja lähetys pineinä. Serial interface on helppokäyttöinen. kirjoita vain x, y tai z ja sitten joku kokonains numero. (`x4` `y10`) Arduiion ottaa kokonaisluvun verraan otoksia sensorista ja kun se lähettää radioaallon yli nämä otokset se merkkaa mihin `xyz` axis:siin otokset liittyvä. 
+Arduinokoodit löytyy kansiosta `arduino/`. Seillä on kaksi kansiota. `tiedonkeräys/` kansiossa on ohjelma jolla nimensä mukaan kerätään tietoa. Se myös lähettää tieto radioaaltojen, joka päätyy lopulta tietokantaan. Tiedon keräys onnistuu kun kirjoitaa vain x, y tai z ja sitten jonkun kokonainsluvun. (`x4`, `y10`, `z7`). `ml_predictive` kansiossa on arduino ohjelma, joka pystyy kertomaan missä asennossa laite on hyödyntäen kiihtyvyys anturia. Ohjelmassa on 3 eri algorytmiä jolla se pyrkii kertomaan missä asennossa laite on (k-means, neuroverkko ja päätöspuu).
 
 ## database access
 
@@ -27,5 +27,22 @@ Tässä on ryhmittelemätöntä dataa. Joka pitäisi lajitella kuuteen eri ryhm�
 ![raakadata](assets/Figure_1.png "ryhmittelemätön data")
 
 
-Ja tässä on 10 k-means iteraation jälkeen ryhmitelty data. 6 ryhmää selkeästi erillään. Siniset pisteet ovat k-means algoithmin centroidit. Ruskean ja purppuran ryhmän centroideja on hankala/mahdoton erottaa koska ne ovat osittain tai täysin ryhmänsä pisteiden peitossa.
+Ja tässä on muutaman k-means iteraation jälkeen ryhmitelty data. 6 ryhmää selkeästi erillään. Siniset pisteet ovat k-means algoithmin centroidit. Joitain centroideja on hankala/mahdoton erottaa koska ne ovat osittain tai täysin ryhmänsä pisteiden peitossa.
 ![k-means](assets/Figure_2.png "k-means ryhmitelty data")
+
+## arduino koneoppimisen tulokset
+
+Tässä on arduinolle tehtyjen koneoppimis mallejen lopputulemat confusion matriiseissa. Jokaisella mallille on syötetty samat testi arvot.
+
+```
+┏━━━━━━━━━┓        ┏━━━━━━━━━━━┓      ┏━━━━━━━━━━━━━━┓
+┃ k-means ┃        ┃ NeuralNet ┃      ┃ DecisionTree ┃
+┣━━━━━━━━━┻━━━━━━━━╋━━━━━━━━━━━┻━━━━━━╋━━━━━━━━━━━━━━┻━━━┓
+┃ 6  0  0  0  0  1 ┃ 7  0  0  0  0  0 ┃ 7  0  0  0  0  0 ┃
+┃ 0  6  0  0  0  0 ┃ 0  6  0  0  0  0 ┃ 0  4  0  0  2  0 ┃
+┃ 0  0 10  0  0  0 ┃ 0  0 10  0  0  0 ┃ 0  0 10  0  0  0 ┃
+┃ 0  0  0 12  0  0 ┃ 0  0  0 12  0  0 ┃ 0  0  0  8  0  4 ┃
+┃ 0  0  0  0  7  0 ┃ 0  0  0  0  7  0 ┃ 0  0  0  0  7  0 ┃
+┃ 0  0  0  0  0  7 ┃ 0  0  0  0  1  6 ┃ 0  0  0  0  0  7 ┃
+┗━━━━━━━━━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━┛
+```

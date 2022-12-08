@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 #csv
-data = pd.read_csv("mydata.csv")
+data = pd.read_csv("out.csv")
 datav = data.to_numpy()		#"vector" format
 datac = datav.transpose()	#plot friendly format
 
@@ -33,7 +33,7 @@ print(dataKv)
 
 
 #loop like 10 times: more = more accurate
-for i in range(100):
+for i in range(1000):
 	print("iteration:", i)
 	print("point0", dataKv[0])
 	print("point1", dataKv[1])
@@ -108,3 +108,27 @@ plt.plot(g5[0], g5[1], g5[2], 'o')
 plt.show()
 
 print(pgs)
+
+
+#make a headerfile
+#ifndef KDOT_H
+#define KDOT_H
+#float kPoints[6][3] =	{
+# 			{{x, y, z},{x, y, z},{x, y, z}},
+#			{{x, y, z},{x, y, z},{x, y, z}},
+#			{{x, y, z},{x, y, z},{x, y, z}},
+#			{{x, y, z},{x, y, z},{x, y, z}},
+#			{{x, y, z},{x, y, z},{x, y, z}},
+#			{{x, y, z},{x, y, z},{x, y, z}}
+# 			}
+#endif #KDOT_H
+
+file1 = open("kdot.h", "w")
+file1.write("#ifndef KDOT_H\n")
+file1.write("#define KDOT_H\n")
+file1.write("static float kPoints[6][3] =\t{\n")
+for i in dataKv:
+	file1.write("\t\t\t{" + '%f' % i[0] + ", " + '%f' % i[1] + " ," + '%f' % i[2] + "},\n")
+file1.write("\t\t\t};\n")
+file1.write("#endif//KDOT_H\n")
+file1.close()
